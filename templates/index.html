@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mis tareas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="task-app">
+        <header class="page-header">
+            <p class="eyebrow">ORGANIZA TU DÍA</p>
+            <h1>Mis tareas</h1>
+            <p class="subtitle">Un paso a la vez. Puedes hacerlo.</p>
+        </header>
+
+        <form class="task-form" action="/agregar" method="post">
+            <label class="sr-only" for="texto_tarea">Nueva tarea</label>
+            <input id="texto_tarea" type="text" name="texto_tarea" placeholder="¿Qué tienes que hacer?" required>
+            <button type="submit">Agregar tarea</button>
+        </form>
+
+        <section class="tasks-section" aria-label="Lista de tareas">
+            {% if tareas %}
+                <ul class="task-list">
+                    {% for tarea in tareas %}
+                        <li class="task-item{% if tarea['hecho'] %} task-item--done{% endif %}">
+                            <span class="task-text">{{ tarea['texto'] }}</span>
+                            {% if tarea['hecho'] %}
+                                <span class="task-status">Completada</span>
+                            {% else %}
+                                <a class="complete-link" href="{{ url_for('completar', id=tarea['id']) }}">Completar</a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="empty-state">Todavía no hay tareas. Añade una para empezar.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

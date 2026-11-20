@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "texto": "Entregable 4 del master",
+    "hecho": false
+  },
+  {
+    "id": 2,
+    "texto": "llevar tarjeta a ornella",
+    "hecho": false
+  },
+  {
+    "id": 3,
+    "texto": "hacer plan de negocio y aplicar en Erasmus + ",
+    "hecho": false
+  }
+]
